@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!--thymeleaf 表达式-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../../webapp/static/css/style.css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" src="../../webapp/static/js/thymeleaf.js"
+            th:src="@{/static/js/thymeleaf.js}"></script>
+    <title>thymeleaf</title>
+    <style>
+
+        .h2 {
+            text-decoration: underline;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="showing">
+    <p th:if="${flag}">如果是true 则显示</p>
+    <!--注意 这里是 th:text -->
+    <p th:text="${flag}?'三相表达式，为flag=true' :'为false时显示'"></p>
+
+    <!--注意 ： th:if="${not flag}  ==th:unless="${flag}  -->
+    <p th:if="${not flag}" >取反 ，所以如果testBoolean 是 true ，本句话就不会显示</p>
+    <p th:unless="${flag}">如果是flase ,则显示。相当与 非 =!falg</p>
+
+</div>
+
+
+<div class="showing">
+    <h2>显示 转义和非转义的 html 文本</h2>
+    <p th:text="${htmlContent} "></p>
+    <p th:utext="${htmlContent}"></p>
+</div>
+
+<div class="showing">
+    <h2>获取productContent 参数</h2>
+    <p th:text="${productContent}"></p>
+    <p th:text="${productContent.getName()}"></p>
+    <p th:text="${productContent.name}"></p>
+</div>
+
+<div class="showing" th:object="${productContent}">
+    <h2>*{}方式显示属性</h2>
+    <p th:text="*{name}"></p>
+</div>
+
+<div class="showing">
+    <h2>算数运算</h2>
+    <p th:text="${productContent.price+999}"></p>
+</div>
+
+
+
+<div class="showing">
+    <!--   *** 这里的 incl::footer1 中 incl是incl.html 页面 ***-->
+    <div th:replace="incl::footer1" ></div>
+    <div th:replace="incl::footer2(2015,2018)" ></div>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<!--申明是thymeleaf-->
+<!--内置工具中的 #dates-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <link rel="stylesheet" type="text/css" href="../../webapp/static/css/style.css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" src="../../webapp/static/js/thymeleaf.js" th:src="@{/static/js/thyneleaf.js}"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        div.date p {
+            padding-left: 20px;
+            color: gray;
+        }
+
+        h2 {
+            text-decoration: underline;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<div class="showing">
+    <h2>直接使用 ${now} </h2>
+    <p th:text="${now}"></p>
+
+    <h2>使用 ${#dates.format(now)} </h2>
+    <p th:text="${#dates.format(now)}"></p>
+
+    <h2>使用自定义format(now,'yyyy:MM:dd HH:mm:ss') </h2>
+    <p th:text="${#dates.format(now,'yyyy:MM:dd HH:mm:ss')}"></p>
+
+</div>
+
+</body>
+
+</html>

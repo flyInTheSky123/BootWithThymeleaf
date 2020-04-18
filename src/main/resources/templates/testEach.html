@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../webapp/static/css/style.css" th:href="@{/static/css/style.css}">
+    <script type="text/javascript" src="../../webapp/static/js/thymeleaf.js"
+            th:src="@{/static/js/thymeleaf.js}"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div class="showing">
+    <h2>简单的遍历</h2>
+    <table border="0.5px solid gray">
+        <thead>
+        <tr>
+            <th>index</th>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="p:${ps}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="showing">
+    <h2>带状态的遍历</h2>
+    <table border="0.5px  gray">
+        <thead>
+        <tr>
+            <th>index</th>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:class="${status.even}?'even':'odd'" th:each="p,status:${ps}">
+            <td th:text="${status.index}"></td>
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="showing">
+    <h2>遍历 select </h2>
+
+    <select size="3">
+        <!-- th:selected="${p.id==2}  默认选中的是 id=2 的选项 -->
+        <option th:each="p:${ps}" th:value="${p.id}" th:selected="${p.id==2}"
+                th:text="${p.name}"></option>
+    </select>
+
+</div>
+
+<div class="showing">
+<h2>遍历 radio </h2>
+
+<input name="product" type="radio" th:each="p:${ps}" th:value="${p.id}"  th:checked="${p.id==1}"     th:text="${p.name}"  />
+
+</div>
+
+</body>
+</html>
